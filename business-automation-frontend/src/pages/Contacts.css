@@ -1,0 +1,65 @@
+.contacts {
+  padding: 20px;
+}
+
+.contact-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+.contact-form input {
+  padding: 8px;
+}
+
+.contact-form select {
+  padding: 8px;
+}
+
+button {
+  padding: 8px 12px;
+  background: #1f5c51;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+.delete {
+  background: white;
+  margin-left: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 13px;
+}
+
+.search-bar {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 0 5px;
+}
+.icon-btn.edit svg {
+  color: #007bff;
+}
+
+.icon-btn:hover svg {
+  opacity: 0.7;
+}

@@ -1,0 +1,160 @@
+.dashboard-page {
+  background: #ffffff;
+  padding: 10px;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.dashboard-header p {
+  color: #6b7280;
+}
+
+/* Right icons */
+.header-icons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  background: #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.avatar.yellow {
+  background: #fde68a;
+}
+
+.avatar.blue {
+  background: #bfdbfe;
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: #f9fafb;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.card p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.card h2 {
+  margin: 10px 0;
+  font-size: 26px;
+}
+
+.green {
+  color: #10b981;
+  font-size: 14px;
+}
+
+/* Chart */
+.chart-box {
+  background: #f9fafb;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Chart header */
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chart-header h3 {
+  margin-bottom: 5px;
+}
+
+.chart-header p {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.whatsapp {
+  background: #3b82f6;
+}
+
+.email {
+  background: #374151;
+}
+
+.sms {
+  background: #14b8a6;
+}
+
+/* Bars */
+.chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 200px;
+}
+
+.bar-group {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.bar {
+  width: 12px;
+  border-radius: 6px;
+}

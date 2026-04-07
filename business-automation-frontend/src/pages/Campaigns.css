@@ -1,0 +1,28 @@
+.campaigns {
+  padding: 20px;
+}
+
+.campaign-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+
+select, input {
+  padding: 8px;
+}
+
+.campaigns table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.campaigns th,
+.campaigns td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 13px;
+}

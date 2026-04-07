@@ -1,0 +1,115 @@
+/* Page Container */
+.schedule-page {
+  min-height: 100vh;
+  background: #f4f6f9;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1, p{
+  color: black;
+}
+
+/* Card */
+.schedule-card {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading */
+.schedule-card h1 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+/* Form */
+.schedule-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Inputs */
+.schedule-form input,
+.schedule-form textarea,
+.schedule-form select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Textarea */
+.schedule-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+/* Date & Time Row */
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row input {
+  flex: 1;
+}
+
+/* Button */
+.schedule-form button {
+  background: #1f5c51;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.schedule-form button:hover {
+  background: #248372;
+}
+
+/* Upcoming Section */
+.upcoming {
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+.upcoming h2 {
+  margin-bottom: 10px;
+}
+
+/* Campaign Card */
+.campaign-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Campaign Info */
+.campaign-info p {
+  margin: 2px 0;
+}
+
+/* Status */
+.status {
+  color: green;
+  font-weight: bold;
+}
+
+.schedule-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
