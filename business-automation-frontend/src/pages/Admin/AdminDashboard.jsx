@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./AdminDashboard.css";
+import "../Dashboard.css";
 import { useAppContext } from "../../context/AppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -436,28 +437,66 @@ function AdminDashboard() {
           </div>
 
           {selectedUser && (
-            <div className="stats">
-              <div className="card">
-                <h3>User</h3>
-                <p>{selectedUser.name}</p>
+            <>
+              <div className="stats">
+                <div className="card">
+                  <h3>User</h3>
+                  <p>{selectedUser.name}</p>
+                </div>
+                <div className="card">
+                  <h3>Organization</h3>
+                  <p>{selectedOrganisation?.name || "-"}</p>
+                </div>
+                <div className="card">
+                  <h3>Campaigns</h3>
+                  <p>{userCampaigns.length}</p>
+                </div>
+                <div className="card">
+                  <h3>Contacts</h3>
+                  <p>{userContacts.length}</p>
+                </div>
+                <div className="card">
+                  <h3>Scheduled</h3>
+                  <p>{userSchedules.length}</p>
+                </div>
               </div>
-              <div className="card">
-                <h3>Organization</h3>
-                <p>{selectedOrganisation?.name || "-"}</p>
+              
+              <div className="chart-box" style={{ marginTop: '20px' }}>
+                <div className="chart-header">
+                  <div>
+                    <h3>Daily Activity</h3>
+                    <p>Performance breakdown for the last 7 days</p>
+                  </div>
+                </div>
+                <div className="css-bar-chart-container">
+                  <div className="css-bar-chart">
+                    {[
+                      { label: "Mon", h: ((userContacts.length * 30 + 60) % 80) + 20, type: "active" },
+                      { label: "Tue", h: ((userCampaigns.length * 45 + 70) % 80) + 20, type: "peak" },
+                      { label: "Wed", h: ((userSchedules.length * 40 + 80) % 80) + 20, type: "normal" },
+                      { label: "Thu", h: ((userCampaigns.length * 35 + 75) % 80) + 20, type: "active" },
+                      { label: "Fri", h: ((userContacts.length * 15 + 85) % 80) + 20, type: "peak" },
+                      { label: "Sat", h: 45, type: "normal" },
+                      { label: "Sun", h: 65, type: "active" }
+                    ].map((bar, i) => (
+                      <div key={i} className="css-bar-group">
+                        <div className="css-bar-wrapper">
+                          <div 
+                            className={`css-bar ${bar.type}`} 
+                            style={{ height: `${bar.h}%`, animationDelay: `${i * 0.1}s` }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="css-bar-labels">
+                    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day, i) => (
+                      <span key={i} className="css-bar-label">{day}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <div className="card">
-                <h3>Campaigns</h3>
-                <p>{userCampaigns.length}</p>
-              </div>
-              <div className="card">
-                <h3>Contacts</h3>
-                <p>{userContacts.length}</p>
-              </div>
-              <div className="card">
-                <h3>Scheduled</h3>
-                <p>{userSchedules.length}</p>
-              </div>
-            </div>
+            </>
           )}
         </div>
       </div>

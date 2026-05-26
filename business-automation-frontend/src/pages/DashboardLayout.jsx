@@ -9,18 +9,20 @@ import {
   faFileAlt,
   faGear,
   faCalendar,
-  faMoon,
-  faSun,
+  faCloudMoon,
+  faCloudSun,
   faUser,
   faShieldHalved,
+  faCircleQuestion,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 import { useAppContext } from "../context/AppContext";
 
 function DashboardLayout() {
   const navigate = useNavigate();
-  const { currentUser, logout } = useAppContext();
-  const [darkMode, setDarkMode] = useState(false);
+  const { currentUser, logout, isDarkMode, toggleTheme } = useAppContext();
   const [openProfile, setOpenProfile] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const links = [
     { to: "/dashboard", label: "Dashboard", icon: faChartLine },
@@ -28,11 +30,12 @@ function DashboardLayout() {
     { to: "/dashboard/campaigns", label: "Campaigns", icon: faBullhorn },
     { to: "/dashboard/schedule", label: "Schedule", icon: faCalendar },
     { to: "/dashboard/reports", label: "Reports", icon: faFileAlt },
+    { to: "/dashboard/settings", label: "Settings", icon: faGear },
+    { to: "/dashboard/help", label: "Help", icon: faCircleQuestion },
   ];
 
   if (currentUser?.role === "admin") {
     links.unshift({ to: "/admin", label: "Admin", icon: faShieldHalved });
-    links.push({ to: "/dashboard/settings", label: "Settings", icon: faGear });
   }
 
   const handleLogout = () => {
@@ -41,28 +44,47 @@ function DashboardLayout() {
   };
 
   return (
-    <div className={darkMode ? "layout dark" : "layout"}>
-      <div className="sidebar">
-        <h2 className="logo">BizNotify</h2>
+    <div className={isDarkMode ? "layout dark" : "layout"}>
+      <div className="animated-bg">
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
+        <div className="blob blob-3"></div>
+      </div>
+      
+      <header className="navbar-horizontal">
+        <div className="navbar-brand">
+          <img src="/logo.svg" alt="BizNotify Logo" className="logo-img" />
+          <span>BizNotify</span>
+        </div>
 
-        <nav>
+        <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+
+        <nav className={`navbar-links ${mobileMenuOpen ? "open" : ""}`}>
           {links.map((link) => (
-            <NavLink key={link.to} to={link.to} end={link.to === "/dashboard"}>
-              <FontAwesomeIcon icon={link.icon} /> {link.label}
+            <NavLink 
+              key={link.to} 
+              to={link.to} 
+              end={link.to === "/dashboard"}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <FontAwesomeIcon icon={link.icon} /> <span>{link.label}</span>
             </NavLink>
           ))}
         </nav>
-      </div>
 
-      <div className="content">
-        <div className="topbar">
+        <div className="navbar-actions">
           <div className="topbar-user">
             <strong>{currentUser?.name}</strong>
             <span>{currentUser?.role === "admin" ? "Admin" : "User"}</span>
           </div>
 
-          <button onClick={() => setDarkMode(!darkMode)}>
-            <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+          <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
+            <FontAwesomeIcon 
+              icon={isDarkMode ? faCloudSun : faCloudMoon} 
+              style={{ color: isDarkMode ? '#fbbf24' : '#818cf8' }}
+            />
           </button>
 
           <div className="profile" onClick={() => setOpenProfile(!openProfile)}>
@@ -72,17 +94,20 @@ function DashboardLayout() {
 
             {openProfile && (
               <div className="dropdown">
-                <p>{currentUser?.email}</p>
+                <p className="dropdown-email">{currentUser?.email}</p>
+                <p onClick={() => { navigate('/dashboard/profile'); setOpenProfile(false); }}>Profile</p>
                 <p onClick={handleLogout}>Logout</p>
               </div>
             )}
           </div>
         </div>
+      </header>
 
+      <main className="content">
         <div className="page">
           <Outlet />
         </div>
-      </div>
+      </main>
     </div>
   );
 }

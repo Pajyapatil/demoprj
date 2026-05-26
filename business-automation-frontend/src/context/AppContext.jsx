@@ -159,9 +159,26 @@ const loadState = () => {
 export function AppProvider({ children }) {
   const [state, setState] = useState(loadState);
 
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme ? savedTheme === "dark" : true;
+  });
+
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [state]);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.remove("light-mode");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.add("light-mode");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDarkMode]);
+
+  const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
   const currentUser =
     state.users.find((user) => user.id === state.sessionUserId) || null;
@@ -461,6 +478,8 @@ export function AppProvider({ children }) {
     saveSchedule,
     deleteSchedule,
     updateSettings,
+    isDarkMode,
+    toggleTheme,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

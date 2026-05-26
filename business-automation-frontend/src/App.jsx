@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useAppContext } from "./context/AppContext";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
 import DashboardLayout from "./pages/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
 import Contacts from "./pages/Contacts";
@@ -10,6 +11,9 @@ import Schedule from "./pages/Schedule";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import Help from "./pages/Help";
+import Profile from "./pages/Profile";
+import ChatBot from "./components/ChatBot";
 
 function ProtectedRoute({ children, allowedRoles }) {
   const { currentUser, isAuthenticated } = useAppContext();
@@ -85,6 +89,15 @@ function App() {
         />
 
         <Route
+          path="/forgot-password"
+          element={
+            <PublicRoute>
+              <ForgotPassword />
+            </PublicRoute>
+          }
+        />
+
+        <Route
           path="/dashboard"
           element={
             <ProtectedRoute allowedRoles={["admin", "user"]}>
@@ -97,6 +110,8 @@ function App() {
           <Route path="campaigns" element={<Campaigns />} />
           <Route path="schedule" element={<Schedule />} />
           <Route path="reports" element={<Reports />} />
+          <Route path="help" element={<Help />} />
+          <Route path="profile" element={<Profile />} />
           <Route
             path="settings"
             element={
@@ -120,6 +135,7 @@ function App() {
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <ChatBot />
     </BrowserRouter>
   );
 }
